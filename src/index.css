@@ -1,0 +1,151 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  --background: #f5f6fb;
+  --foreground: #0f172a;
+  --card: #ffffff;
+  --card-foreground: #0f172a;
+  --muted: #eceef6;
+  --muted-foreground: #475569;
+  --border: #d9deec;
+  --input: #c3cadf;
+  --primary: #4338ca;
+  --primary-foreground: #ffffff;
+  --secondary: #e4e7f5;
+  --secondary-foreground: #1e293b;
+  --ring: #4f46e5;
+  --table-surface: #e9ecf8;
+  --table-ring: #c7cdea;
+
+  --thinking: #1d4ed8;
+  --thinking-soft: #dbeafe;
+  --hungry: #92400e;
+  --hungry-soft: #fef3c7;
+  --eating: #166534;
+  --eating-soft: #dcfce7;
+  --blocked: #b91c1c;
+  --blocked-soft: #fee2e2;
+}
+
+.dark {
+  --background: #0b1020;
+  --foreground: #e6e9f5;
+  --card: #131a31;
+  --card-foreground: #e6e9f5;
+  --muted: #1a2240;
+  --muted-foreground: #a3adc9;
+  --border: #29325a;
+  --input: #3a4678;
+  --primary: #818cf8;
+  --primary-foreground: #0b1020;
+  --secondary: #1f2850;
+  --secondary-foreground: #e6e9f5;
+  --ring: #a5b4fc;
+  --table-surface: #18204a;
+  --table-ring: #2c3770;
+
+  --thinking: #93c5fd;
+  --thinking-soft: #1e3a8a66;
+  --hungry: #fcd34d;
+  --hungry-soft: #78350f66;
+  --eating: #86efac;
+  --eating-soft: #14532d66;
+  --blocked: #fca5a5;
+  --blocked-soft: #7f1d1d66;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-ring: var(--ring);
+  --color-table-surface: var(--table-surface);
+  --color-table-ring: var(--table-ring);
+  --color-thinking: var(--thinking);
+  --color-thinking-soft: var(--thinking-soft);
+  --color-hungry: var(--hungry);
+  --color-hungry-soft: var(--hungry-soft);
+  --color-eating: var(--eating);
+  --color-eating-soft: var(--eating-soft);
+  --color-blocked: var(--blocked);
+  --color-blocked-soft: var(--blocked-soft);
+  --font-sans: "Inter", ui-sans-serif, system-ui, "Segoe UI", Roboto, sans-serif;
+  --font-mono: ui-monospace, "Cascadia Code", "SFMono-Regular", Consolas, monospace;
+}
+
+@layer base {
+  * {
+    border-color: var(--border);
+  }
+  html {
+    color-scheme: light;
+  }
+  html.dark {
+    color-scheme: dark;
+  }
+  body {
+    margin: 0;
+    background: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    min-height: 100vh;
+  }
+  :focus-visible {
+    outline: 3px solid var(--ring);
+    outline-offset: 2px;
+    border-radius: 6px;
+  }
+  button {
+    cursor: pointer;
+  }
+  button:disabled {
+    cursor: not-allowed;
+  }
+}
+
+@keyframes dash-flow {
+  to {
+    stroke-dashoffset: -24;
+  }
+}
+
+@keyframes soft-pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.55;
+  }
+}
+
+.animate-dash {
+  animation: dash-flow 1.2s linear infinite;
+}
+
+.animate-soft-pulse {
+  animation: soft-pulse 1.8s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
